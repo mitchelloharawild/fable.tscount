@@ -10,9 +10,9 @@ train_tscount <- function(.data, specials, ...) {
 specials_tscount <- new_specials(
   common_xregs,
   xreg = function(...) {
-    model_formula <- rlang::new_formula(
+    model_formula <- new_formula(
       lhs = NULL,
-      rhs = Reduce(function(.x, .y) rlang::call2("+", .x, .y), rlang::enexprs(...))
+      rhs = Reduce(function(.x, .y) call2("+", .x, .y), enexprs(...))
     )
     env <- parent.frame()
     if (!exists("list", env)) env <- base_env()
@@ -55,4 +55,16 @@ residuals.fable_tscount <- function(x, type = c("innovation", "pearson", "anscom
   type <- match.arg(type)
   if(type == "innovation") type <- "response"
   NextMethod()
+}
+
+#' @export
+generate.fable_tscount <- function(x, new_data, specials, ...) {
+  xreg <- specials$xreg[[1]]
+  tscount_sim <- function(times, xreg) {
+    as.numeric(tscount::tsglm.sim(times, fit = x, xreg = xreg)$ts)
+  }
+  li <- tsibble::key_data(new_data)[[".rows"]]
+  sim <- lapply(li, function(i) tscount_sim(length(i), xreg[i,]))
+  new_data[[".sim"]] <- do.call(c, sim)
+  new_data
 }
