@@ -14,7 +14,8 @@ Description: Allows tsglm models from the 'tscount' package to
     model combination tools.
 License: GPL-3
 Suggests: 
-    testthat
+    testthat,
+    covr
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
