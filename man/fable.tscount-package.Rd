@@ -15,6 +15,7 @@ Allows tsglm models from the 'tscount' package to
 \seealso{
 Useful links:
 \itemize{
+  \item \url{http://pkg.mitchelloharawild.com/fable.tscount/}
   \item \url{https://github.com/mitchelloharawild/fable.tscount}
   \item Report bugs at \url{https://github.com/mitchelloharawild/fable.tscount/issues}
 }
