@@ -61,7 +61,7 @@ residuals.fable_tscount <- function(x, type = c("innovation", "response", "pears
 generate.fable_tscount <- function(x, new_data, specials, ...) {
   xreg <- specials$xreg[[1]]
   tscount_sim <- function(times, xreg) {
-    as.numeric(tscount::tsglm.sim(times, fit = x, xreg = xreg)$ts)
+    as.numeric(tscount::tsglm.sim(times, fit = x, xreg = xreg, n_start = 0)$ts)
   }
   li <- tsibble::key_data(new_data)[[".rows"]]
   sim <- lapply(li, function(i) tscount_sim(length(i), xreg[i,]))
