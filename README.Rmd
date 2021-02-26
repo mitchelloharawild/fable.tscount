@@ -55,11 +55,25 @@ ecoli <- tsibble(
   cases = tscount::ecoli$cases,
   index = "week"
 ) 
+ecoli
+```
+
+```{r fit}
+fit <- ecoli %>% 
+  model(TSCOUNT(cases))
+fit
+```
+
+```{r report}
+report(fit)
+```
+
+```{r generate}
 ecoli %>% 
   model(TSCOUNT(cases)) %>% 
-  forecast(bootstrap = TRUE, times = 10) %>% 
-  autoplot(ecoli)
+  generate(times = 10)
 ```
+
 
 ## Code of Conduct
 
