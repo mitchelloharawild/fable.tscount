@@ -1,0 +1,10 @@
+template:
+  params:
+    bootswatch: cosmo
+
+development:
+  mode: auto
+
+authors:
+  Mitchell O'Hara-Wild:
+    href: https://mitchelloharawild.com
