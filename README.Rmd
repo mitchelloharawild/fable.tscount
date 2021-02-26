@@ -22,41 +22,44 @@ knitr::opts_chunk$set(
 [![R build status](https://github.com/mitchelloharawild/fable.tscount/workflows/R-CMD-check/badge.svg)](https://github.com/mitchelloharawild/fable.tscount/actions)
 <!-- badges: end -->
 
-The goal of fable.tscount is to ...
+The `{fable.tscount}` package allows `tsglm()` models from the [`{tscount}`]((https://cran.r-project.org/package=tscount))
+package to be used in a tidy workflow with the modelling interface of
+'fabletools'. This extends 'tscount' to provide enhanced model
+specification and management, performance evaluation methods, and
+model combination tools.
 
 ## Installation
 
-You can install the released version of fable.tscount from [CRAN](https://CRAN.R-project.org) with:
+You can install the **development** version from
+[GitHub](https://github.com/mitchelloharawild/fable.tscount)
 
-``` r
-install.packages("fable.tscount")
+```{r gh-installation, eval = FALSE}
+# install.packages("remotes")
+remotes::install_github("mitchelloharawild/fable.tscount")
 ```
 
-## Example
 
-This is a basic example which shows you how to solve a common problem:
+<!-- You can install the released version of fable.tscount from [CRAN](https://CRAN.R-project.org) with: -->
 
-```{r example}
+<!-- ``` r -->
+<!-- install.packages("fable.tscount") -->
+<!-- ``` -->
+
+## Usage
+
+```{r ecoli}
 library(fable.tscount)
-## basic example code
+library(tsibble)
+ecoli <- tsibble(
+  week = yearweek(paste0(tscount::ecoli$year, " W", tscount::ecoli$week)),
+  cases = tscount::ecoli$cases,
+  index = "week"
+) 
+ecoli %>% 
+  model(TSCOUNT(cases)) %>% 
+  forecast(bootstrap = TRUE, times = 10) %>% 
+  autoplot(ecoli)
 ```
-
-What is special about using `README.Rmd` instead of just `README.md`? You can include R chunks like so:
-
-```{r cars}
-summary(cars)
-```
-
-You'll still need to render `README.Rmd` regularly, to keep `README.md` up-to-date.
-
-You can also embed plots, for example:
-
-```{r pressure, echo = FALSE}
-plot(pressure)
-```
-
-In that case, don't forget to commit and push the resulting figure files, so they display on GitHub!
-
 
 ## Code of Conduct
 
