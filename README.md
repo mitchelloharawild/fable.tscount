@@ -107,18 +107,27 @@ ecoli %>%
 #> # Key:       .model, .rep [10]
 #>    .model         .rep      week  .sim
 #>    <chr>          <chr>   <week> <dbl>
-#>  1 TSCOUNT(cases) 1     2013 W21    16
-#>  2 TSCOUNT(cases) 1     2013 W22    28
-#>  3 TSCOUNT(cases) 1     2013 W23    25
+#>  1 TSCOUNT(cases) 1     2013 W21    20
+#>  2 TSCOUNT(cases) 1     2013 W22    23
+#>  3 TSCOUNT(cases) 1     2013 W23    20
 #>  4 TSCOUNT(cases) 1     2013 W24    16
-#>  5 TSCOUNT(cases) 1     2013 W25    21
-#>  6 TSCOUNT(cases) 1     2013 W26    21
-#>  7 TSCOUNT(cases) 1     2013 W27    24
-#>  8 TSCOUNT(cases) 1     2013 W28    16
-#>  9 TSCOUNT(cases) 1     2013 W29    19
-#> 10 TSCOUNT(cases) 1     2013 W30    22
+#>  5 TSCOUNT(cases) 1     2013 W25    13
+#>  6 TSCOUNT(cases) 1     2013 W26    26
+#>  7 TSCOUNT(cases) 1     2013 W27    21
+#>  8 TSCOUNT(cases) 1     2013 W28    30
+#>  9 TSCOUNT(cases) 1     2013 W29    22
+#> 10 TSCOUNT(cases) 1     2013 W30    17
 #> # … with 1,030 more rows
 ```
+
+``` r
+ecoli %>% 
+  model(TSCOUNT(cases)) %>% 
+  forecast() %>% 
+  autoplot(ecoli)
+```
+
+<img src="man/figures/README-forecast-1.png" width="100%" />
 
 ## Code of Conduct
 

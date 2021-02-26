@@ -68,3 +68,11 @@ generate.fable_tscount <- function(x, new_data, specials, ...) {
   new_data[[".sim"]] <- do.call(c, sim)
   new_data
 }
+
+#' @export
+forecast.fable_tscount <- function(x, new_data, specials, ...) {
+  xreg <- specials$xreg[[1]]
+  distributional::dist_degenerate(
+    predict(x, n.ahead = nrow(new_data), newxreg = xreg, level = 0)$pred
+  )
+}

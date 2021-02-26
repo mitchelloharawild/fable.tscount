@@ -11,6 +11,7 @@ knitr::opts_chunk$set(
   fig.path = "man/figures/README-",
   out.width = "100%"
 )
+set.seed(1)
 ```
 
 # fable.tscount
@@ -74,6 +75,12 @@ ecoli %>%
   generate(times = 10)
 ```
 
+```{r forecast}
+ecoli %>% 
+  model(TSCOUNT(cases)) %>% 
+  forecast() %>% 
+  autoplot(ecoli)
+```
 
 ## Code of Conduct
 
