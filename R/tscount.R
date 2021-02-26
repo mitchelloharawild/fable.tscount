@@ -51,7 +51,7 @@ report.fable_tscount <- function(x) {
 }
 
 #' @export
-residuals.fable_tscount <- function(x, type = c("innovation", "pearson", "anscombe"), ...) {
+residuals.fable_tscount <- function(x, type = c("innovation", "response", "pearson", "anscombe"), ...) {
   type <- match.arg(type)
   if(type == "innovation") type <- "response"
   NextMethod()
