@@ -2,5 +2,6 @@
 
 S3method(model_sum,fable_tscount)
 S3method(report,fable_tscount)
+S3method(residuals,fable_tscount)
 export(TSCOUNT)
 importFrom(rlang,enquo)

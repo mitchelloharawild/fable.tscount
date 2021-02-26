@@ -49,3 +49,10 @@ model_sum.fable_tscount <- function(x) {
 report.fable_tscount <- function(x) {
   cat(capture.output(print(summary(x)))[-c(1:3)], sep = "\n")
 }
+
+#' @export
+residuals.fable_tscount <- function(x, type = c("innovation", "pearson", "anscombe"), ...) {
+  type <- match.arg(type)
+  if(type == "innovation") type <- "response"
+  NextMethod()
+}
