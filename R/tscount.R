@@ -4,10 +4,7 @@ train_tscount <- function(.data, specials, ...) {
   }
   xreg <- specials$xreg[[1]]
   y <- unclass(.data)[[tsibble::measured_vars(.data)]]
-  structure(
-    tscount::tsglm(y, xreg = xreg, ...),
-    class = "fable_tscount"
-  )
+  add_class(tscount::tsglm(y, xreg = xreg, ...), class = "fable_tscount")
 }
 
 specials_tscount <- new_specials(
@@ -41,4 +38,14 @@ TSCOUNT <- function(formula, ...) {
     check = all_tsbl_checks
   )
   new_model_definition(tscount_model, !!enquo(formula), ...)
+}
+
+#' @export
+model_sum.fable_tscount <- function(x) {
+  "TSCOUNT"
+}
+
+#' @export
+report.fable_tscount <- function(x) {
+  cat(capture.output(print(summary(x)))[-c(1:3)], sep = "\n")
 }
