@@ -154,17 +154,23 @@
 <span class="co">#&gt; # Key:       .model, .rep [10]</span>
 <span class="co">#&gt;    .model         .rep      week  .sim</span>
 <span class="co">#&gt;    &lt;chr&gt;          &lt;chr&gt;   &lt;week&gt; &lt;dbl&gt;</span>
-<span class="co">#&gt;  1 TSCOUNT(cases) 1     2013 W21    16</span>
-<span class="co">#&gt;  2 TSCOUNT(cases) 1     2013 W22    28</span>
-<span class="co">#&gt;  3 TSCOUNT(cases) 1     2013 W23    25</span>
+<span class="co">#&gt;  1 TSCOUNT(cases) 1     2013 W21    20</span>
+<span class="co">#&gt;  2 TSCOUNT(cases) 1     2013 W22    23</span>
+<span class="co">#&gt;  3 TSCOUNT(cases) 1     2013 W23    20</span>
 <span class="co">#&gt;  4 TSCOUNT(cases) 1     2013 W24    16</span>
-<span class="co">#&gt;  5 TSCOUNT(cases) 1     2013 W25    21</span>
-<span class="co">#&gt;  6 TSCOUNT(cases) 1     2013 W26    21</span>
-<span class="co">#&gt;  7 TSCOUNT(cases) 1     2013 W27    24</span>
-<span class="co">#&gt;  8 TSCOUNT(cases) 1     2013 W28    16</span>
-<span class="co">#&gt;  9 TSCOUNT(cases) 1     2013 W29    19</span>
-<span class="co">#&gt; 10 TSCOUNT(cases) 1     2013 W30    22</span>
+<span class="co">#&gt;  5 TSCOUNT(cases) 1     2013 W25    13</span>
+<span class="co">#&gt;  6 TSCOUNT(cases) 1     2013 W26    26</span>
+<span class="co">#&gt;  7 TSCOUNT(cases) 1     2013 W27    21</span>
+<span class="co">#&gt;  8 TSCOUNT(cases) 1     2013 W28    30</span>
+<span class="co">#&gt;  9 TSCOUNT(cases) 1     2013 W29    22</span>
+<span class="co">#&gt; 10 TSCOUNT(cases) 1     2013 W30    17</span>
 <span class="co">#&gt; # … with 1,030 more rows</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">ecoli</span> <span class="op">%&gt;%</span> 
+  <span class="fu">model</span><span class="op">(</span><span class="fu">TSCOUNT</span><span class="op">(</span><span class="va">cases</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu">forecast</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu">autoplot</span><span class="op">(</span><span class="va">ecoli</span><span class="op">)</span></code></pre></div>
+<p><img src="reference/figures/README-forecast-1.png" width="100%"></p>
 </div>
 <div id="code-of-conduct" class="section level2">
 <h2 class="hasAnchor">
