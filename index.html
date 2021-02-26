@@ -70,53 +70,11 @@
 
       </header><div class="row">
   <div class="contents col-md-9">
-<div id="fabletscount" class="section level1">
-<div class="page-header"><h1 class="hasAnchor">
-<a href="#fabletscount" class="anchor"></a>fable.tscount</h1></div>
-<!-- badges: start -->
-
-<p>The <a href="https://github.com/mitchelloharawild/fable.tscount">fable.tscount</a> package allows <code>tsglm()</code> models from the <a href="(https://cran.r-project.org/package=tscount)"><code>{tscount}</code></a> package to be used in a tidy workflow with the modelling interface of ‘fabletools’. This extends ‘tscount’ to provide enhanced model specification and management, performance evaluation methods, and model combination tools.</p>
-<div id="installation" class="section level2">
-<h2 class="hasAnchor">
-<a href="#installation" class="anchor"></a>Installation</h2>
-<p>You can install the <strong>development</strong> version from <a href="https://github.com/mitchelloharawild/fable.tscount">GitHub</a></p>
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># install.packages("remotes")</span>
-<span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span><span class="st">"mitchelloharawild/fable.tscount"</span><span class="op">)</span></code></pre></div>
-<!-- You can install the released version of fable.tscount from [CRAN](https://CRAN.R-project.org) with: -->
-<!-- ``` r -->
-<!-- install.packages("fable.tscount") -->
-<!-- ``` -->
-</div>
-<div id="usage" class="section level2">
-<h2 class="hasAnchor">
-<a href="#usage" class="anchor"></a>Usage</h2>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/mitchelloharawild/fable.tscount">fable.tscount</a></span><span class="op">)</span>
-<span class="co">#&gt; Loading required package: fabletools</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tsibble.tidyverts.org">tsibble</a></span><span class="op">)</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Attaching package: 'tsibble'</span>
-<span class="co">#&gt; The following objects are masked from 'package:base':</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt;     intersect, setdiff, union</span>
-<span class="va">ecoli</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tsibble.tidyverts.org/reference/tsibble.html">tsibble</a></span><span class="op">(</span>
-  week <span class="op">=</span> <span class="fu"><a href="https://tsibble.tidyverts.org/reference/year-week.html">yearweek</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="fu">tscount</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/tscount/man/ecoli.html">ecoli</a></span><span class="op">$</span><span class="va">year</span>, <span class="st">" W"</span>, <span class="fu">tscount</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/tscount/man/ecoli.html">ecoli</a></span><span class="op">$</span><span class="va">week</span><span class="op">)</span><span class="op">)</span>,
-  cases <span class="op">=</span> <span class="fu">tscount</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/tscount/man/ecoli.html">ecoli</a></span><span class="op">$</span><span class="va">cases</span>,
-  index <span class="op">=</span> <span class="st">"week"</span>
-<span class="op">)</span> 
-<span class="va">ecoli</span> <span class="op">%&gt;%</span> 
-  <span class="fu">model</span><span class="op">(</span><span class="fu">TSCOUNT</span><span class="op">(</span><span class="va">cases</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu">forecast</span><span class="op">(</span>bootstrap <span class="op">=</span> <span class="cn">TRUE</span>, times <span class="op">=</span> <span class="fl">10</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu">autoplot</span><span class="op">(</span><span class="va">ecoli</span><span class="op">)</span></code></pre></div>
-<p><img src="reference/figures/README-ecoli-1.png" width="100%"></p>
-</div>
-<div id="code-of-conduct" class="section level2">
-<h2 class="hasAnchor">
-<a href="#code-of-conduct" class="anchor"></a>Code of Conduct</h2>
-<p>Please note that the fable.tscount project is released with a <a href="https://contributor-covenant.org/version/2/0/CODE_OF_CONDUCT.html">Contributor Code of Conduct</a>. By contributing to this project, you agree to abide by its terms.</p>
-</div>
-</div>
+Allows tsglm models from the 'tscount' package to
+    be used in a tidy workflow with the modelling interface of
+    'fabletools'. This extends 'tscount' to provide enhanced model
+    specification and management, performance evaluation methods, and
+    model combination tools.
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -151,16 +109,7 @@
 </ul>
 </div>
 
-  <div class="dev-status">
-<h2>Dev status</h2>
-<ul class="list-unstyled">
-<li><a href="https://www.tidyverse.org/lifecycle/#experimental"><img src="https://img.shields.io/badge/lifecycle-experimental-orange.svg" alt="Lifecycle: experimental"></a></li>
-<li><a href="https://CRAN.R-project.org/package=fable.tscount"><img src="https://www.r-pkg.org/badges/version/fable.tscount" alt="CRAN status"></a></li>
-<li><a href="https://codecov.io/gh/mitchelloharawild/fable.tscount?branch=master"><img src="https://codecov.io/gh/mitchelloharawild/fable.tscount/branch/master/graph/badge.svg" alt="Codecov test coverage"></a></li>
-<li><a href="https://github.com/mitchelloharawild/fable.tscount/actions"><img src="https://github.com/mitchelloharawild/fable.tscount/workflows/R-CMD-check/badge.svg" alt="R build status"></a></li>
-</ul>
-</div>
-</div>
+  </div>
 </div>
 
 
