@@ -34,7 +34,7 @@ TSCOUNT <- function(formula, ...) {
   tscount_model <- new_model_class(
     "TSCOUNT",
     train = train_tscount,
-    specials = specials_tscount,
+    specials = specials_tscount, origin = NULL,
     check = all_tsbl_checks
   )
   new_model_definition(tscount_model, !!enquo(formula), ...)
@@ -70,9 +70,11 @@ generate.fable_tscount <- function(x, new_data, specials, ...) {
 }
 
 #' @export
-forecast.fable_tscount <- function(x, new_data, specials, ...) {
+forecast.fable_tscount <- function(x, new_data, specials, times = 1000, ...) {
   xreg <- specials$xreg[[1]]
+  browser()
   distributional::dist_degenerate(
-    predict(x, n.ahead = nrow(new_data), newxreg = xreg, level = 0)$pred
+    predict(x, n.ahead = nrow(new_data), newxreg = xreg, level = .8,
+            B = times)$pred
   )
 }
