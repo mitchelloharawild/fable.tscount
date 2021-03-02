@@ -72,7 +72,6 @@ generate.fable_tscount <- function(x, new_data, specials, ...) {
 #' @export
 forecast.fable_tscount <- function(x, new_data, specials, times = 1000, ...) {
   xreg <- specials$xreg[[1]]
-  browser()
   distributional::dist_degenerate(
     predict(x, n.ahead = nrow(new_data), newxreg = xreg, level = .8,
             B = times)$pred
