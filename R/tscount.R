@@ -70,10 +70,23 @@ generate.fable_tscount <- function(x, new_data, specials, ...) {
 }
 
 #' @export
-forecast.fable_tscount <- function(x, new_data, specials, times = 1000, ...) {
+forecast.fable_tscount <- function(x, new_data, specials, ...) {
   xreg <- specials$xreg[[1]]
-  distributional::dist_degenerate(
-    predict(x, n.ahead = nrow(new_data), newxreg = xreg, level = .8,
-            B = times)$pred
-  )
+  fc <- predict(x, n.ahead = nrow(new_data), newxreg = xreg, level = 0)$pred
+  if(nrow(new_data) == 1) {
+    # Able to use conditional distribution
+    if(x$distr == "poisson") {
+      distributional::dist_poisson(fc)
+    } else if (x$distr == "nbinom") {
+      distributional::dist_negative_binomial(
+        size = x$distrcoefs,
+        prob = x$distrcoefs/(x$distrcoefs + fc)
+      )
+    } else {
+      abort("Unkown forecast distribution")
+    }
+  } else {
+    # Uncertainty only possible via simulate = TRUE, so don't evaluate uncertainty
+    distributional::dist_degenerate(fc)
+  }
 }
